@@ -1,3 +1,7 @@
+-- Schema: premier_league
+
+CREATE SCHEMA premier_league AUTHORIZATION postgres;
+
 -- Table: premier_league.match
 
 -- DROP TABLE IF EXISTS premier_league.match;
