@@ -3,7 +3,7 @@ on:
 name: action
 jobs:
   hello-world:
-    name: Un job para saludar 
+    name: Un job para saludar
     runs-on: ubuntu-latest
     steps:
       - name: Step Hola Mundo
