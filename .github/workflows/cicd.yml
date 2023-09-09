@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Step Hola Mundo
         id: hello
-        uses: daur17/hello-world-docker-action@v1
+        uses: daur17/hello-world-docker-action@v1.1
         with:
           who-to-greet: "DAUR"
       - name: Usar el output
