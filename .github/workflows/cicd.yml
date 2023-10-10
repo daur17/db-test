@@ -7,11 +7,17 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
+      - name: Checkout repo
         uses: actions/checkout@v2 # checkout the repository content
       - name: Install Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python -
+      - name: Install Libraries
+        run: |
+          poetry install
       - name: Run pytest
         run: python src/test.py
