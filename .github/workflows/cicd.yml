@@ -1,15 +1,27 @@
 on:
   push:
 name: action
+
 jobs:
-  hello-world:
-    name: Un job para saludar 
+  ci:
+    name: CI
     runs-on: ubuntu-latest
+    env:
+      DATABRICKS_HOST: https://dbc-b716824f-8af8.cloud.databricks.com/
+      DATABRICKS_CLIENT_ID: ${{secrets.DATABRICKS_CLIENT_ID}}
+      DATABRICKS_CLIENT_SECRET: ${{secrets.DATABRICKS_CLIENT_SECRET}}
     steps:
-      - name: Step Hola Mundo
-        id: hello
-        uses: daur17/hello-world-docker-action@v1.1
+      - name: Checkout repo
+        uses: actions/checkout@v2 # checkout the repository content
+      - name: Install Python
+        uses: actions/setup-python@v4
         with:
-          who-to-greet: "DAUR"
-      - name: Usar el output
-        run: echo "La fecha fue ${{ steps.hello.outputs.time }}"
+          python-version: '3.10'
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python -
+      - name: Install Libraries
+        run: |
+          poetry install
+      - name: Run pytest
+        run: python src/test.py
